@@ -10,7 +10,7 @@ struct user {
 	string password;
 	string type;
 	string phone;
-	bool isActive = true;
+	string isActive = "active";
 };
 
 int validate_login(string a) {
@@ -18,6 +18,7 @@ int validate_login(string a) {
 	string b;
 	string u;
 	string p;
+	string act;
 	string t;
 	bool check = false;
 	fstream input;
@@ -35,16 +36,26 @@ int validate_login(string a) {
 		getline(cin, b);
 		if (b == p)
 		{
-			getline(input, p);
-			if (p == "admin")
+			getline(input, act);
+			if (act == "active")
 			{
-				input.close();
-				return 1;
+				getline(input, t);
+				if (t == "admin")
+				{
+					input.close();
+					return 1;
+				}
+				else
+				{
+					input.close();
+					return 2;
+				}
 			}
 			else
 			{
+				cout << "account isn't active\n";
 				input.close();
-				return 2;
+				return 0;
 			}
 		}
 		else
@@ -134,6 +145,7 @@ void add_u() { //admin only
 			}
 			output << a.username << endl;
 			output << a.password << endl;
+			output << a.isActive << endl;
 			output << a.type << endl;
 			output << a.phone << endl;
 			output.close();
@@ -175,6 +187,8 @@ void remove_u() {
 		{
 			record << "admin " << "removed this user\n";
 			record << b << endl;
+			getline(input, d);
+			record << d << endl;
 			getline(input, d);
 			record << d << endl;
 			getline(input, d);
@@ -228,41 +242,55 @@ int main()
 l:
 	int x;
 	x = login();
-	cout << "YOKOSU: \n1.Login \n2.About us \nchoose an option\n====================\n";
 	switch (x)
 	{
 	case 1: {
-
-		cout << "1.add a user \n2.remove a user \n3.activate a user \n4.deactivate a user \n5.view all users \n6.view a user by type \n7.count the users \n8.system statistics\n";
-		cout << "choose an option\n";
 		int c;
-		cin >> c;
-		cin.ignore();
-		switch (c)
+		do
 		{
-		case 1: {
-			add_u();
-		}
-		case 2: {
-			remove_u();
-		}
-		case 3: {
+			cout << "YOKOSU: \n";
+			cout << "1.add a user \n2.remove a user \n3.activate a user \n4.deactivate a user \n5.view all users \n6.view a user by type \n7.count the users \n8.system statistics \n9.delete all records \n";
+			cout << "choose an option\n";
+			cin >> c;
+			cin.ignore();
+			switch (c)
+			{
+			case 1: {
+				add_u();
+				break;
+			}
+			case 2: {
+				remove_u();
+				break;
+			}
+			case 3: {
 
-		}
-		case 4: {
+			}
+			case 4: {
 
-		}
-		case 5: {
+			}
+			case 5: {
 
-		}
-		case 6: {
+			}
+			case 6: {
 
-		}
-		default: {
+			}
+			case 7: {
 
-			break;
-		}
-		}
+			}
+			case 8: {
+
+			}
+			case 9: {
+				del();
+				break;
+			}
+
+			default: {
+				break;
+			}
+			}
+		} while (c != 0);
 	}
 	case 2: {
 
