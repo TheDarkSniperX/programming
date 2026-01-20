@@ -10,10 +10,63 @@ struct user {
 	string password;
 	string type;
 	string phone;
-	bool isActive;
+	bool isActive = true;
 };
 
+bool validate_ph(string a) {
 
+	string ph;
+	bool check = false;
+	fstream input;
+	input.open("users.txt", ios::in);
+	while (getline(input, ph))
+	{
+		if (a[0] == '7' && a[1] == '7' || a[1] == '8' || a[1] == '3' || a[1] == '1') {
+			check = true;
+			break;
+		}
+		else
+		{
+			check = false;
+		}
+	}
+	if (check)
+	{
+		input.close();
+		return 1;
+	}
+	else
+	{
+	cout << "The Number must Start with 77,78,73,71 \n";
+	input.close();
+	return 0;
+	}
+
+}
+
+bool validate_u(string a) {
+
+	string b;
+	string u;
+	bool check = false;
+	fstream input;
+	input.open("users.txt", ios::in);
+	while (getline(input, u))
+	{
+		if (a == u) {
+			check = true;
+			break;
+		}
+		check = false;
+	}
+	if (check)
+	{
+		input.close();
+		return 0;
+	}
+	input.close();
+	return 1;
+}
 
 void add_u() { //admin only
 
@@ -22,35 +75,48 @@ void add_u() { //admin only
 	output.open("users.txt", ios::app);
 	cout << "Enter the username to add: \n";
 	getline(cin, a.username);
-	cout << "Enter the password: \n";
-	getline(cin, a.password);
-	cout << "Enter the phone number: \n";
-	getline(cin, a.phone);
-	cout << "choose the type\n1.admin\n2.employee\n";
-	int x;
-	cin >> x;
-	cin.ignore();
-	switch (x)
+	if (validate_u(a.username))
 	{
-	case 1: {
-		a.type = "admin";
-		break;
+		cout << "Enter the password: \n";
+		getline(cin, a.password);
+		cout << "Enter the phone number: \n";
+		getline(cin, a.phone);
+		if (validate_ph(a.phone)) {
+			cout << "choose the type\n1.admin\n2.employee\n";
+			int x;
+			cin >> x;
+			cin.ignore();
+			switch (x)
+			{
+			case 1: {
+				a.type = "admin";
+				break;
+			}
+			case 2: {
+				a.type = "emplyee";
+				break;
+			}
+			default: {
+				cout << "wrong input\n";
+				add_u();
+			}
+			}
+			output << a.username << endl;
+			output << a.password << endl;
+			output << a.type << endl;
+			output << a.phone << endl;
+			output.close();
+		}
+		else
+		{
+			add_u();
+		}
 	}
-	case 2: {
-		a.type = "emplyee";
-		break;
-	}
-	default: {
-		cout << "wrong input\n";
+	else
+	{
+		cout << "username already exists \n";
 		add_u();
 	}
-	}
-	output << a.username << endl;
-	output << a.password << endl;
-	output << a.type << endl;
-	output << a.phone << endl;
-	output.close();
-
 }
 
 int validate_login(string a) {
@@ -80,25 +146,28 @@ int validate_login(string a) {
 			//cout << p << endl;
 			if (p == "admin")
 			{
+				input.close();
 				return 1;
 			}
 			else
 			{
+				input.close();
 				return 2;
 			}
 		}
 		else
 		{
 			cout << "the password is incorrect \n";
+			input.close();
 			return 0;
 		}
 	}
 	else
 	{
 		cout << "the username doesn't exist \n";
+		input.close();
 		return 0;
 	}
-	input.close();
 
 }
 
@@ -147,7 +216,7 @@ int main()
 	}
 	case 2: {
 
-		
+
 	}
 	}
 
