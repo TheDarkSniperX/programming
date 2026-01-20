@@ -13,40 +13,71 @@ struct user {
 	bool isActive = true;
 };
 
-bool validate_ph(string a) {
+int validate_login(string a) {
 
-	string ph;
+	string b;
+	string u;
+	string p;
+	string t;
 	bool check = false;
 	fstream input;
 	input.open("users.txt", ios::in);
-	while (getline(input, ph))
+	while (getline(input, u))
 	{
-		if (a[0] == '7' && a[1] == '7' || a[1] == '8' || a[1] == '3' || a[1] == '1') {
+		if (a == u) {
 			check = true;
 			break;
 		}
+	}
+	if (check) {
+		cout << "Enter the password: \n";
+		getline(input, p);
+		getline(cin, b);
+		if (b == p)
+		{
+			getline(input, p);
+			if (p == "admin")
+			{
+				input.close();
+				return 1;
+			}
+			else
+			{
+				input.close();
+				return 2;
+			}
+		}
 		else
 		{
-			check = false;
+			cout << "the password is incorrect \n";
+			input.close();
+			return 0;
 		}
 	}
-	if (check)
+	else
 	{
+		cout << "the username doesn't exist \n";
 		input.close();
+		return 0;
+	}
+
+}
+
+bool validate_ph(string a) {
+
+	if (a[0] == '7' && (a[1] == '7' || a[1] == '8' || a[1] == '3' || a[1] == '1')) {
 		return 1;
 	}
 	else
 	{
-	cout << "The Number must Start with 77,78,73,71 \n";
-	input.close();
-	return 0;
+		cout << "The Number must Start with 77,78,73,71 \n";
+		return 0;
 	}
 
 }
 
 bool validate_u(string a) {
 
-	string b;
 	string u;
 	bool check = false;
 	fstream input;
@@ -119,66 +150,57 @@ void add_u() { //admin only
 	}
 }
 
-int validate_login(string a) {
+void remove_u() {
 
+	user a;
 	string b;
-	string u;
-	string p;
-	string t;
-	bool check = false;
+	string c;
+	string d;
+	fstream output;
 	fstream input;
+	fstream outputback;
+	fstream inputback;
+	fstream record;
+	record.open("record.txt", ios::app);
+	output.open("userst.txt", ios::out);
 	input.open("users.txt", ios::in);
-	while (getline(input, u))
+	cout << "enter the user you want to delete\n";
+	getline(cin, c);
+	while (getline(input, b))
 	{
-		if (a == u) {
-			check = true;
-			break;
-		}
-		check = false;
-	}
-	if (check) {
-		cout << "Enter the password: \n";
-		getline(input, p);
-		getline(cin, b);
-		if (b == p)
-		{
-			getline(input, p);
-			//cout << p << endl;
-			if (p == "admin")
-			{
-				input.close();
-				return 1;
-			}
-			else
-			{
-				input.close();
-				return 2;
-			}
+		if (c != b) {
+			output << b << endl;
 		}
 		else
 		{
-			cout << "the password is incorrect \n";
-			input.close();
-			return 0;
+			record << "admin " << "removed this user\n";
+			record << b << endl;
+			getline(input, d);
+			record << d << endl;
+			getline(input, d);
+			record << d << endl;
+			getline(input, d);
+			record << d << endl << "======================\n";
 		}
 	}
-	else
+	record.close();
+	output.close();
+	input.close();
+	outputback.open("userst.txt", ios::in);
+	inputback.open("users.txt", ios::out);
+	while (getline(outputback, b))
 	{
-		cout << "the username doesn't exist \n";
-		input.close();
-		return 0;
+		inputback << b << endl;
 	}
-
 }
-
 
 int login() {
 
-	user u;
+	user a;
 	int val = 0;
 	cout << "Enter the username to login: \n";
-	getline(cin, u.username);
-	val = validate_login(u.username);
+	getline(cin, a.username);
+	val = validate_login(a.username);
 	if (val == 1) {
 		return 1;
 	}
@@ -192,32 +214,42 @@ int login() {
 	else return 0;
 }
 
+void dele() {
+
+	fstream del;
+	del.open("userst.txt", ios::out);
+	del.open("users.txt", ios::out);
+	del.close();
+
+}
 
 int main()
 {
 	add_u();
-	int x;
-	cout << "YOKOSU: \n1.Login \n2.About us \nchoose an option\n====================\n";
-	cin >> x;
-	cin.ignore();
-	switch (x)
-	{
-	case 1: {
-		int loginn = 0;
-		loginn = login();
-		if (loginn == 1 or loginn == 2) {
-			cout << " logged in sucssessfully \n";
-		}
-		else
-		{
-			cout << " login failed \n";
-		}
-
-	}
-	case 2: {
+	remove_u();
+	//dele();
 
 
-	}
-	}
+	//int x;
+	//cout << "YOKOSU: \n1.Login \n2.About us \nchoose an option\n====================\n";
+	//cin >> x;
+	//cin.ignore();
+	//switch (x)
+	//{
+	//case 1: {
+	//	int loginn = 0;
+	//	loginn = login();
+	//	if (loginn == 1) {
+	//		cout << "1.add user\n2.remove user\n3.activate user\n4.deactivate user\n ";
+	//	}
+	//	else
+	//	{
+	//		cout << " login failed \n";
+	//	}
 
+	//}
+	//case 2: {
+
+	//}
+	//}
 }
