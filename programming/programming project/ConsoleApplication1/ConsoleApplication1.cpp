@@ -214,42 +214,65 @@ int login() {
 	else return 0;
 }
 
-void dele() {
+void del() {
 
-	fstream del;
-	del.open("userst.txt", ios::out);
-	del.open("users.txt", ios::out);
-	del.close();
+	fstream dele;
+	dele.open("userst.txt", ios::out);
+	dele.open("users.txt", ios::out);
+	dele.close();
 
 }
 
 int main()
 {
-	add_u();
-	remove_u();
-	//dele();
+l:
+	int x;
+	x = login();
+	cout << "YOKOSU: \n1.Login \n2.About us \nchoose an option\n====================\n";
+	switch (x)
+	{
+	case 1: {
+
+		cout << "1.add a user \n2.remove a user \n3.activate a user \n4.deactivate a user \n5.view all users \n6.view a user by type \n7.count the users \n8.system statistics\n";
+		cout << "choose an option\n";
+		int c;
+		cin >> c;
+		cin.ignore();
+		switch (c)
+		{
+		case 1: {
+			add_u();
+		}
+		case 2: {
+			remove_u();
+		}
+		case 3: {
+
+		}
+		case 4: {
+
+		}
+		case 5: {
+
+		}
+		case 6: {
+
+		}
+		default: {
+
+			break;
+		}
+		}
+	}
+	case 2: {
 
 
-	//int x;
-	//cout << "YOKOSU: \n1.Login \n2.About us \nchoose an option\n====================\n";
-	//cin >> x;
-	//cin.ignore();
-	//switch (x)
-	//{
-	//case 1: {
-	//	int loginn = 0;
-	//	loginn = login();
-	//	if (loginn == 1) {
-	//		cout << "1.add user\n2.remove user\n3.activate user\n4.deactivate user\n ";
-	//	}
-	//	else
-	//	{
-	//		cout << " login failed \n";
-	//	}
 
-	//}
-	//case 2: {
+	}
+	default: {
 
-	//}
-	//}
+		cout << "login failed\n";
+		goto l;
+	}
+	}
 }
