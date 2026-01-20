@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\USER\Desktop\programming\programming project\ConsoleApplication1\</FILEPATH>
+      <FILENAME>ConsoleApplication1.cpp</FILENAME>
+      <LINE>14</LINE>
+      <COLUMN>0</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'user::isActive' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>user::{ctor}</FUNCTION>
+    <DECORATED>??0user@@QEAA@XZ</DECORATED>
+    <FUNCLINE>14</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>user::isActive</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>
