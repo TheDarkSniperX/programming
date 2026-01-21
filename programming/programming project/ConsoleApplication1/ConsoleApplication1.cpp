@@ -135,7 +135,7 @@ void add_u() { //admin only
 				break;
 			}
 			case 2: {
-				a.type = "emplyee";
+				a.type = "employee";
 				break;
 			}
 			default: {
@@ -208,6 +208,99 @@ void remove_u() {
 	}
 }
 
+void update_u() {
+
+	string b;
+	string c;
+	string d;
+	fstream output;
+	fstream input;
+	fstream outputback;
+	fstream inputback;
+	fstream record;
+	record.open("record.txt", ios::app);
+	output.open("userst.txt", ios::out);
+	input.open("users.txt", ios::in);
+	cout << "enter the user you want to update\n";
+	getline(cin, c);
+	while (getline(input, b))
+	{
+		if (c != b) {
+			output << b << endl;
+		}
+		else
+		{
+			record << "admin " << "updated this user\n";
+		u:
+			cout << "enter the new username\n";
+			getline(cin, b);
+			if (validate_u(b))
+			{
+				output << b << endl;
+				record << b << endl;
+				getline(input, d);
+				cout << "enter the new password\n";
+				getline(cin, d);
+				output << d << endl;
+				record << d << endl;
+				getline(input, d);
+				output << d << endl;
+				record << d << endl;
+				getline(input, d);
+			l:
+				cout << "choose the new type\n1.admin\n2.employee\n";
+				int x;
+				cin >> x;
+				cin.ignore();
+				if (x == 1)
+				{
+					d = "admin";
+					output << d << endl;
+					record << d << endl;
+				}
+				else if (x == 2)
+				{
+					d = "employee";
+					output << d << endl;
+					record << d << endl;
+				}
+				else
+				{
+					cout << "wrong input\n";
+					goto l;
+				}
+				getline(input, d);
+			p:
+				cout << "enter the new phone number\n";
+				getline(cin, d);
+				if (validate_ph(d)) {
+					output << d << endl;
+					record << d << endl << "======================\n";
+				}
+				else
+				{
+					goto p;
+				}
+
+			}
+			else
+			{
+				cout << "username already exists \n";
+				goto u;
+			}
+		}
+	}
+	record.close();
+	output.close();
+	input.close();
+	outputback.open("userst.txt", ios::in);
+	inputback.open("users.txt", ios::out);
+	while (getline(outputback, b))
+	{
+		inputback << b << endl;
+	}
+}
+
 int login() {
 
 	user a;
@@ -233,6 +326,7 @@ void del() {
 	fstream dele;
 	dele.open("userst.txt", ios::out);
 	dele.open("users.txt", ios::out);
+	dele.open("record.txt", ios::out);
 	dele.close();
 
 }
@@ -246,10 +340,10 @@ l:
 	{
 	case 1: {
 		int c;
+		cout << "YOKOSU: \n";
 		do
 		{
-			cout << "YOKOSU: \n";
-			cout << "1.add a user \n2.remove a user \n3.activate a user \n4.deactivate a user \n5.view all users \n6.view a user by type \n7.count the users \n8.system statistics \n9.delete all records \n";
+			cout << "========================\n\n1.add a user \n2.remove a user \n3.update a user \n4.activate a user \n5.deactivate a user \n6.view all users \n7.view a user by type \n8.count the users \n9.system statistics \n10.delete all records \n0.exit \n";
 			cout << "choose an option\n";
 			cin >> c;
 			cin.ignore();
@@ -264,7 +358,7 @@ l:
 				break;
 			}
 			case 3: {
-
+				update_u();
 			}
 			case 4: {
 
@@ -282,6 +376,9 @@ l:
 
 			}
 			case 9: {
+
+			}
+			case 10: {
 				del();
 				break;
 			}
@@ -291,6 +388,7 @@ l:
 			}
 			}
 		} while (c != 0);
+		break;
 	}
 	case 2: {
 

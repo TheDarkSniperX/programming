@@ -1,7 +1,7 @@
 admin removed this user
 asdjf
 123
-emplyee
+employee
 78123
 ======================
 admin removed this user
@@ -14,6 +14,51 @@ admin removed this user
 rabea
 321
 active
-emplyee
+employee
 770217789
+======================
+admin updated this user
+naif1
+43213
+active
+admin
+775312313
+======================
+admin updated this user
+naif
+1234
+active
+employee
+3123
+======================
+admin removed this user
+khalid
+123
+active
+employee
+778412712
+======================
+admin updated this user
+majdi3
+3212
+active
+admin updated this user
+majdi
+321321
+active
+employee
+admin updated this user
+majdi1
+321
+active
+employee
+employee
+admin
+employee
+admin updated this user
+majdi1
+321
+active
+employee
+770219843
 ======================
