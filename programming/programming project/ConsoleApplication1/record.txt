@@ -39,26 +39,13 @@ employee
 778412712
 ======================
 admin updated this user
-majdi3
-3212
-active
-admin updated this user
-majdi
-321321
-active
-employee
-admin updated this user
-majdi1
-321
-active
-employee
-employee
-admin
-employee
-admin updated this user
 majdi1
 321
 active
 employee
 770219843
+======================
+admin deactivated this user
+osama
+778923163
 ======================

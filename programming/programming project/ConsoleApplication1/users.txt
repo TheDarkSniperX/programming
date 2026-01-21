@@ -15,7 +15,7 @@ employee
 770217789
 osama
 123
-active
+inactive
 admin
 778923163
 majdi1

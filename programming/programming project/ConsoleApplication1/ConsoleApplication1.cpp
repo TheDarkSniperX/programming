@@ -301,6 +301,102 @@ void update_u() {
 	}
 }
 
+void activate_u() {
+
+	user a;
+	string b;
+	string c;
+	string d;
+	fstream output;
+	fstream input;
+	fstream outputback;
+	fstream inputback;
+	fstream record;
+	record.open("record.txt", ios::app);
+	output.open("userst.txt", ios::out);
+	input.open("users.txt", ios::in);
+	cout << "enter the user you want to activate\n";
+	getline(cin, c);
+	while (getline(input, b))
+	{
+		if (c != b) {
+			output << b << endl;
+		}
+		else
+		{
+			record << "admin " << "activated this user\n" << b << endl;
+			output << b << endl;
+			getline(input, d);
+			output << d << endl;
+			getline(input, d);
+			d = "active";
+			output << d << endl;
+			getline(input, d);
+			output << d << endl;
+			getline(input, d);
+			output << d << endl;
+			record << d << endl << "======================\n";
+		}
+	}
+	record.close();
+	output.close();
+	input.close();
+	outputback.open("userst.txt", ios::in);
+	inputback.open("users.txt", ios::out);
+	while (getline(outputback, b))
+	{
+		inputback << b << endl;
+	}
+}
+
+void deactivate_u() {
+
+	user a;
+	string b;
+	string c;
+	string d;
+	fstream output;
+	fstream input;
+	fstream outputback;
+	fstream inputback;
+	fstream record;
+	record.open("record.txt", ios::app);
+	output.open("userst.txt", ios::out);
+	input.open("users.txt", ios::in);
+	cout << "enter the user you want to deactivate\n";
+	getline(cin, c);
+	while (getline(input, b))
+	{
+		if (c != b) {
+			output << b << endl;
+		}
+		else
+		{
+			record << "admin " << "deactivated this user\n" << b << endl;
+			output << b << endl;
+			getline(input, d);
+			output << d << endl;
+			getline(input, d);
+			d = "inactive";
+			output << d << endl;
+			getline(input, d);
+			output << d << endl;
+			getline(input, d);
+			output << d << endl;
+			record << d << endl << "======================\n";
+		}
+	}
+	record.close();
+	output.close();
+	input.close();
+	outputback.open("userst.txt", ios::in);
+	inputback.open("users.txt", ios::out);
+	while (getline(outputback, b))
+	{
+		inputback << b << endl;
+	}
+}
+
 int login() {
 
 	user a;
@@ -359,12 +455,15 @@ l:
 			}
 			case 3: {
 				update_u();
+				break;
 			}
 			case 4: {
-
+				activate_u();
+				break;
 			}
 			case 5: {
-
+				deactivate_u();
+				break;
 			}
 			case 6: {
 
