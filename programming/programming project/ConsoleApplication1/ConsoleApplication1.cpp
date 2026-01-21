@@ -149,6 +149,8 @@ void add_u() { //admin only
 			output << a.type << endl;
 			output << a.phone << endl;
 			output.close();
+			cout << "user added" << endl;
+
 		}
 		else
 		{
@@ -195,6 +197,7 @@ void remove_u() {
 			record << d << endl;
 			getline(input, d);
 			record << d << endl << "======================\n";
+			cout << "user updated" << endl;
 		}
 	}
 	record.close();
@@ -288,6 +291,7 @@ void update_u() {
 				cout << "username already exists \n";
 				goto u;
 			}
+			cout << "user updated" << endl;
 		}
 	}
 	record.close();
@@ -336,6 +340,7 @@ void activate_u() {
 			getline(input, d);
 			output << d << endl;
 			record << d << endl << "======================\n";
+			cout << "user activated" << endl;
 		}
 	}
 	record.close();
@@ -384,6 +389,7 @@ void deactivate_u() {
 			getline(input, d);
 			output << d << endl;
 			record << d << endl << "======================\n";
+			cout << "user deactivated" << endl;
 		}
 	}
 	record.close();
