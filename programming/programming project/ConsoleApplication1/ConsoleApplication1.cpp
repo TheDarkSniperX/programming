@@ -397,6 +397,136 @@ void deactivate_u() {
 	}
 }
 
+void view_u() {
+
+	string a;
+	fstream input;
+	input.open("users.txt", ios::in);
+	while (getline(input, a))
+	{
+		cout << a << endl;
+	}
+
+}
+
+void view_un() {
+
+	string a;
+	string b;
+	fstream input;
+	input.open("users.txt", ios::in);
+	cout << "enter the username\n";
+	getline(cin, b);
+	cout << endl;
+	while (getline(input, a))
+	{
+		if (b == a)
+		{
+			cout << a << endl;
+			getline(input, a);
+			cout << a << endl;
+			getline(input, a);
+			cout << a << endl;
+			getline(input, a);
+			cout << a << endl;
+			getline(input, a);
+			cout << a << endl;
+			break;
+		}
+	}
+
+}
+
+void count_u() {
+
+	string a;
+	int count = 0;
+	fstream input;
+	input.open("users.txt", ios::in);
+	while (getline(input, a))
+	{
+		count++;
+		getline(input, a);
+		getline(input, a);
+		getline(input, a);
+		getline(input, a);
+	}
+	cout << "the number of users is: " << count << endl;
+}
+
+void count_a() {
+
+	string a;
+	int count = 0;
+	fstream input;
+	input.open("users.txt", ios::in);
+	while (getline(input, a))
+	{
+		if (a == "admin")
+		{
+		count++;
+		}
+	}
+	cout << "the number of admins is: " << count << endl;
+}
+
+void count_act() {
+
+	string a;
+	int count = 0;
+	fstream input;
+	input.open("users.txt", ios::in);
+	while (getline(input, a))
+	{
+		if (a == "active")
+		{
+		count++;
+		}
+	}
+	cout << "the number of active users is: " << count << endl;
+}
+
+void count_e() {
+
+	string a;
+	int count = 0;
+	fstream input;
+	input.open("users.txt", ios::in);
+	while (getline(input, a))
+	{
+		if (a == "employee")
+		{
+		count++;
+		}
+	}
+	cout << "the number of employees is: " << count << endl;
+}
+
+void count_inact() {
+
+	string a;
+	int count = 0;
+	fstream input;
+	input.open("users.txt", ios::in);
+	while (getline(input, a))
+	{
+		if (a == "inactive")
+		{
+		count++;
+		}
+	}
+	cout << "the number of inactive users is: " << count << endl;
+}
+
+void system_statistics() {
+	cout << "the system statistics:\n=======================\n";
+	count_u();
+	count_a();
+	count_e();
+	count_act();
+	count_inact();
+}
+
 int login() {
 
 	user a;
@@ -439,10 +569,11 @@ l:
 		cout << "YOKOSU: \n";
 		do
 		{
-			cout << "========================\n\n1.add a user \n2.remove a user \n3.update a user \n4.activate a user \n5.deactivate a user \n6.view all users \n7.view a user by type \n8.count the users \n9.system statistics \n10.delete all records \n0.exit \n";
+			cout << "========================\n\n1.add a user \n2.remove a user \n3.update a user \n4.activate a user \n5.deactivate a user \n6.view all users \n7.view a user by name \n8.count the users \n9.system statistics \n10.delete all records \n0.exit \n";
 			cout << "choose an option\n";
 			cin >> c;
 			cin.ignore();
+			cout << endl;
 			switch (c)
 			{
 			case 1: {
@@ -466,16 +597,20 @@ l:
 				break;
 			}
 			case 6: {
-
+				view_u();
+				break;
 			}
 			case 7: {
-
+				view_un();
+				break;
 			}
 			case 8: {
-
+				count_u();
+				break;
 			}
 			case 9: {
-
+				system_statistics();
+				break;
 			}
 			case 10: {
 				del();
@@ -483,6 +618,7 @@ l:
 			}
 
 			default: {
+				cout << "wrong input" << endl;
 				break;
 			}
 			}

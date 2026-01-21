@@ -10,12 +10,12 @@ admin
 778123124
 rabea
 321
-active
+inactive
 employee
 770217789
 osama
 123
-inactive
+active
 admin
 778923163
 majdi1
